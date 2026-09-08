@@ -9,12 +9,27 @@ export default {
     extend: {
       colors: {
         kkevo: {
+          canvas: {
+            dark: '#06090E',   // Ultra-deep OLED newsroom black
+            light: '#F8FAFC',  // Crisp institutional paper white
+          },
+          surface: {
+            dark: '#0B111C',   // Elevated card background
+            light: '#FFFFFF',  // Pure white card in light mode
+            elevated: '#111A29',
+          },
+          border: {
+            dark: '#162235',   // Crisp dark border
+            light: '#E2E8F0',  // Crisp light border
+            subtle: 'rgba(255, 255, 255, 0.08)',
+          },
           navy: {
-            950: '#05080F', // deep navy-black canvas
-            900: '#090E17', // elevated card surface
-            800: '#111827', // borders & secondary containers
-            700: '#1E293B', // subtle dividers
-            600: '#334155',
+            950: '#06090E',
+            900: '#0B111C',
+            850: '#111A29',
+            800: '#172438',
+            700: '#233652',
+            600: '#384E6E',
           },
           blue: {
             DEFAULT: '#0066FF',
@@ -32,14 +47,14 @@ export default {
           },
           silver: {
             DEFAULT: '#E2E8F0',
-            light: '#F8FAFC',
+            light: '#FFFFFF',
             dim: '#94A3B8',
           },
           status: {
             fact: '#00D26A',
             claim: '#0066FF',
             allegation: '#F59E0B',
-            analysis: '#8B5CF6',
+            analysis: '#A855F7',
             correction: '#EF4444',
           }
         }
@@ -54,9 +69,10 @@ export default {
         kicker: '0.18em',
       },
       boxShadow: {
-        'kkevo-glow': '0 0 25px -5px rgba(0, 102, 255, 0.15)',
-        'kkevo-green': '0 0 25px -5px rgba(0, 210, 106, 0.15)',
-        'kkevo-card': '0 4px 20px -2px rgba(0, 0, 0, 0.5)',
+        'kkevo-card': '0 4px 20px -2px rgba(0, 0, 0, 0.4)',
+        'kkevo-card-hover': '0 12px 35px -5px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(0, 102, 255, 0.15)',
+        'kkevo-glow': '0 0 30px -5px rgba(0, 102, 255, 0.25)',
+        'kkevo-green': '0 0 30px -5px rgba(0, 210, 106, 0.25)',
       }
     },
   },

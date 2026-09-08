@@ -35,12 +35,12 @@
 
           <!-- Right Column: Continental Economy & Deep Resources -->
           <div class="lg:col-span-8 space-y-6">
-            <div class="flex items-center justify-between border-b border-kkevo-navy-800 pb-3">
-              <h3 class="text-xs uppercase font-bold tracking-widest text-white font-mono flex items-center gap-2">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3">
+              <h3 class="text-xs uppercase font-bold tracking-widest text-slate-900 dark:text-white font-mono flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-kkevo-green"></span>
                 Africa Today: Economic & Strategic Developments
               </h3>
-              <router-link to="/category/africa" class="text-xs text-kkevo-green hover:underline font-mono">
+              <router-link to="/category/africa" class="text-xs text-kkevo-green hover:underline font-mono font-bold">
                 View All &rarr;
               </router-link>
             </div>
@@ -65,17 +65,17 @@
         <ResourceTracker />
 
         <!-- 6. History Spotlight: The Africa They Never Taught You -->
-        <section v-if="newsStore.historyStories.length" class="mt-16 bg-kkevo-navy-900 border border-kkevo-navy-800 rounded-lg p-6 sm:p-8">
-          <div class="flex items-end justify-between mb-6 pb-3 border-b border-kkevo-navy-800">
+        <section v-if="newsStore.historyStories.length" class="mt-16 bg-gradient-to-br from-amber-50/70 via-white to-amber-50/30 dark:bg-gradient-to-br dark:from-[#141009] dark:via-[#0D0B07] dark:to-[#070604] border border-amber-200/80 dark:border-amber-500/20 rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-[0_12px_40px_-10px_rgba(245,158,11,0.12)] transition-colors">
+          <div class="flex items-end justify-between mb-6 pb-3 border-b border-amber-200/70 dark:border-amber-500/20">
             <div>
-              <span class="text-xs font-mono font-bold tracking-widest text-amber-400 uppercase block">
+              <span class="text-xs font-mono font-bold tracking-widest text-amber-600 dark:text-amber-400 uppercase block">
                 Archival & Pre-Colonial Scrutiny
               </span>
-              <h2 class="text-2xl font-extrabold text-white font-headline mt-1">
+              <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white font-headline mt-1">
                 The Africa They Never Taught You
               </h2>
             </div>
-            <router-link to="/category/history" class="text-xs uppercase font-mono tracking-wider text-amber-400 hover:underline">
+            <router-link to="/category/history" class="text-xs uppercase font-mono tracking-wider text-amber-600 dark:text-amber-400 hover:underline font-bold">
               Historical Archives &rarr;
             </router-link>
           </div>
@@ -84,20 +84,20 @@
             <article
               v-for="hist in newsStore.historyStories"
               :key="hist.id"
-              class="bg-kkevo-navy-950 border border-kkevo-navy-800 rounded-lg p-5 flex flex-col justify-between group hover:border-amber-500/40 transition"
+              class="bg-white dark:bg-[#0B0906]/90 border border-amber-200/60 dark:border-amber-500/15 rounded-xl p-5 flex flex-col justify-between group hover:border-amber-400 dark:hover:border-amber-400/50 transition-all duration-300 shadow-sm hover:shadow-md dark:shadow-none hover:-translate-y-1"
             >
               <div class="space-y-3">
-                <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold">Historical Record</span>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-amber-600 dark:text-amber-400 font-bold">Historical Record</span>
                 <router-link :to="`/article/${hist.slug}`" class="block">
-                  <h3 class="text-base font-bold text-white leading-snug group-hover:text-amber-300 transition font-headline">
+                  <h3 class="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-amber-600 dark:group-hover:text-amber-300 transition font-headline">
                     {{ hist.title }}
                   </h3>
                 </router-link>
-                <p v-if="hist.subtitle" class="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                <p v-if="hist.subtitle" class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
                   {{ hist.subtitle }}
                 </p>
               </div>
-              <div class="pt-3 mt-4 border-t border-kkevo-navy-800 text-xs text-slate-400 font-mono">
+              <div class="pt-3 mt-4 border-t border-amber-100 dark:border-amber-500/10 text-xs text-slate-500 dark:text-slate-400 font-mono">
                 {{ hist.authors?.[0]?.display_name || 'KKEVO Historian' }} &bull; {{ hist.reading_time_minutes }}m read
               </div>
             </article>

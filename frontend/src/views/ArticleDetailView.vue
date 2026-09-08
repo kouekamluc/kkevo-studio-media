@@ -121,25 +121,25 @@
       </figure>
 
       <!-- Credibility & Scrutiny Bar -->
-      <div v-if="article.claims?.length" class="bg-white dark:bg-kkevo-navy-900 border border-slate-200 dark:border-kkevo-navy-800 rounded-xl p-5 space-y-3 shadow-sm">
-        <div class="flex items-center justify-between border-b border-slate-200 dark:border-kkevo-navy-800 pb-2.5">
-          <span class="text-xs uppercase font-mono font-bold tracking-widest text-slate-800 dark:text-slate-300">
+      <div v-if="article.claims?.length" class="bg-white dark:bg-gradient-to-b dark:from-[#0E1726]/90 dark:to-[#080D17] border border-slate-200 dark:border-white/[0.08] rounded-xl p-5 sm:p-6 space-y-4 shadow-sm dark:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.6)]">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3">
+          <span class="text-xs uppercase font-mono font-bold tracking-widest text-slate-800 dark:text-white">
             KKEVO Credibility & Fact Audit
           </span>
-          <span class="text-[11px] font-mono text-slate-500">{{ article.claims.length }} Scrutinized Claims</span>
+          <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-bold">{{ article.claims.length }} Scrutinized Claims</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div
             v-for="claim in article.claims"
             :key="claim.id"
-            class="p-3.5 bg-slate-50 dark:bg-kkevo-navy-950 rounded-lg border border-slate-200 dark:border-kkevo-navy-800 space-y-1.5"
+            class="p-3.5 bg-slate-50 dark:bg-[#060910] rounded-lg border border-slate-200 dark:border-white/[0.06] space-y-1.5"
           >
             <div class="flex items-center justify-between">
               <VerificationBadge :status="claim.verification_status" :label="claim.status_display" />
             </div>
-            <p class="text-xs text-slate-900 dark:text-slate-200 font-semibold leading-snug">{{ claim.claim_text }}</p>
-            <p v-if="claim.verification_notes" class="text-[11px] text-slate-600 dark:text-slate-400 leading-tight">{{ claim.verification_notes }}</p>
+            <p class="text-xs text-slate-900 dark:text-white font-semibold leading-snug">{{ claim.claim_text }}</p>
+            <p v-if="claim.verification_notes" class="text-[11px] text-slate-600 dark:text-slate-300 leading-tight">{{ claim.verification_notes }}</p>
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@
           :key="idx"
         >
           <!-- Pull Quote Block -->
-          <blockquote v-if="block.type === 'pull_quote'" class="p-6 bg-blue-50 dark:bg-blue-950/20 border-l-4 border-kkevo-blue rounded-r-xl my-6 space-y-2">
+          <blockquote v-if="block.type === 'pull_quote'" class="p-6 bg-blue-50 dark:bg-blue-950/20 border-l-4 border-kkevo-blue dark:border-kkevo-blue-glow rounded-r-xl my-6 space-y-2">
             <p class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-headline italic leading-relaxed">
               &ldquo;{{ block.quote }}&rdquo;
             </p>
@@ -161,12 +161,12 @@
           </blockquote>
 
           <!-- Key Facts Box -->
-          <div v-else-if="block.type === 'key_facts'" class="p-5 bg-white dark:bg-kkevo-navy-900 border border-emerald-300 dark:border-kkevo-green/40 rounded-xl space-y-2.5 my-6 shadow-sm">
+          <div v-else-if="block.type === 'key_facts'" class="p-5 bg-white dark:bg-gradient-to-b dark:from-[#0E1726]/90 dark:to-[#080D17] border border-emerald-300 dark:border-kkevo-green/40 rounded-xl space-y-2.5 my-6 shadow-sm">
             <h4 class="text-xs uppercase font-bold font-mono tracking-widest text-kkevo-green flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-kkevo-green"></span>
               {{ block.title || 'Key Facts' }}
             </h4>
-            <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 list-disc list-inside">
+            <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-200 list-disc list-inside">
               <li v-for="(fact, fIdx) in block.items" :key="fIdx">{{ fact }}</li>
             </ul>
           </div>
@@ -179,20 +179,20 @@
       </div>
 
       <!-- Citations & Footnotes Drawer -->
-      <section v-if="article.citations?.length" class="mt-12 bg-white dark:bg-kkevo-navy-900 border border-slate-200 dark:border-kkevo-navy-800 rounded-xl p-6 space-y-4 shadow-sm">
-        <div class="flex items-center justify-between border-b border-slate-200 dark:border-kkevo-navy-800 pb-3">
+      <section v-if="article.citations?.length" class="mt-12 bg-white dark:bg-gradient-to-b dark:from-[#0E1726]/90 dark:to-[#080D17] border border-slate-200 dark:border-white/[0.08] rounded-xl p-6 space-y-4 shadow-sm">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3">
           <h3 class="text-xs uppercase font-bold tracking-widest text-slate-900 dark:text-white font-mono flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-kkevo-blue"></span>
             Primary Source Citations & References
           </h3>
-          <span class="text-xs text-slate-500 font-mono">{{ article.citations.length }} Sources Documented</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono font-bold">{{ article.citations.length }} Sources Documented</span>
         </div>
 
         <ol class="space-y-3 text-xs">
           <li
             v-for="cite in article.citations"
             :key="cite.id"
-            class="flex items-start gap-3 p-3.5 bg-slate-50 dark:bg-kkevo-navy-950 rounded-lg border border-slate-200 dark:border-kkevo-navy-800/80"
+            class="flex items-start gap-3 p-3.5 bg-slate-50 dark:bg-[#060910] rounded-lg border border-slate-200 dark:border-white/[0.06]"
           >
             <span class="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-kkevo-blue/20 text-kkevo-blue dark:text-kkevo-blue-glow font-mono font-bold text-[11px] shrink-0">
               [{{ cite.citation_number }}]
@@ -223,7 +223,7 @@
       </section>
 
       <!-- Author Dossier Box -->
-      <div v-if="primaryAuthor" class="mt-12 p-6 bg-white dark:bg-kkevo-navy-900 border border-slate-200 dark:border-kkevo-navy-800 rounded-xl flex flex-col sm:flex-row items-start gap-5 shadow-sm">
+      <div v-if="primaryAuthor" class="mt-12 p-6 bg-white dark:bg-gradient-to-b dark:from-[#0E1726]/90 dark:to-[#080D17] border border-slate-200 dark:border-white/[0.08] rounded-xl flex flex-col sm:flex-row items-start gap-5 shadow-sm">
         <img
           v-if="primaryAuthor.effective_avatar"
           :src="primaryAuthor.effective_avatar"

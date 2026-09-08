@@ -1,5 +1,5 @@
 <template>
-  <article v-if="story" class="group bg-white dark:bg-kkevo-navy-900 border border-slate-200 dark:border-kkevo-navy-800 rounded-xl overflow-hidden hover:border-slate-300 dark:hover:border-kkevo-navy-700 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-lg dark:shadow-none hover:-translate-y-0.5">
+  <article v-if="story" class="group bg-white dark:bg-gradient-to-b dark:from-[#0E1726]/90 dark:to-[#080D17] border border-slate-200 dark:border-white/[0.08] rounded-xl overflow-hidden hover:border-slate-300 dark:hover:border-kkevo-blue/50 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-lg dark:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_12px_30px_-5px_rgba(0,102,255,0.2)] hover:-translate-y-1">
     <div>
       <!-- Thumbnail -->
       <router-link :to="`/article/${story.slug}`" class="block relative aspect-[16/10] overflow-hidden bg-slate-900">
@@ -9,10 +9,10 @@
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-95 group-hover:opacity-100"
           loading="lazy"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70"></div>
         
         <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 z-10">
-          <span class="px-2.5 py-0.5 bg-black/80 text-kkevo-blue-glow text-[11px] font-bold uppercase tracking-wider rounded backdrop-blur-md border border-kkevo-blue/30 shadow-sm">
+          <span class="px-2.5 py-0.5 bg-black/80 text-kkevo-blue-glow text-[11px] font-bold uppercase tracking-wider rounded backdrop-blur-md border border-kkevo-blue/40 shadow-sm">
             {{ story.category_name }}
           </span>
           <span v-if="story.country_flag" class="px-1.5 py-0.5 bg-black/80 text-xs rounded backdrop-blur-md">
@@ -29,17 +29,17 @@
           </h3>
         </router-link>
 
-        <p v-if="story.subtitle" class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed font-normal">
+        <p v-if="story.subtitle" class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed font-normal">
           {{ story.subtitle }}
         </p>
       </div>
     </div>
 
     <!-- Metadata Footer -->
-    <div class="px-5 pb-4 pt-3 border-t border-slate-100 dark:border-kkevo-navy-800/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-mono">
-      <span class="font-medium text-slate-700 dark:text-slate-300">{{ story.authors?.[0]?.display_name || 'KKEVO Staff' }}</span>
-      <span class="flex items-center gap-1">
-        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="px-5 pb-4 pt-3 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-mono">
+      <span class="font-medium text-slate-700 dark:text-slate-200">{{ story.authors?.[0]?.display_name || 'KKEVO Staff' }}</span>
+      <span class="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         {{ story.reading_time_minutes }}m

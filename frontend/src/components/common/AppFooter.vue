@@ -1,18 +1,23 @@
 <template>
-  <footer class="bg-slate-100 dark:bg-kkevo-navy-950 border-t border-slate-200 dark:border-kkevo-navy-800 text-slate-600 dark:text-slate-400 text-sm mt-20 transition-colors">
+  <footer class="bg-slate-100 dark:bg-[#05080E] border-t border-slate-200 dark:border-white/[0.07] text-slate-600 dark:text-slate-400 text-sm mt-20 transition-colors">
     <!-- Top Footer Segment -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
         <!-- Brand Identity Column -->
         <div class="lg:col-span-2 space-y-4">
-          <router-link to="/" class="inline-block">
-            <div class="p-1 rounded bg-black dark:bg-transparent shadow-sm dark:shadow-none inline-block">
-              <img
-                src="/assets/logo.png"
-                alt="KKEVO STUDIO MEDIA"
-                class="h-14 w-auto object-contain"
-              />
-            </div>
+          <router-link to="/" class="inline-block group focus:outline-none">
+            <!-- Dark Mode Logo -->
+            <img
+              src="/assets/logo.png"
+              alt="KKEVO STUDIO MEDIA"
+              class="hidden dark:block h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+            <!-- Light Mode Logo -->
+            <img
+              src="/assets/logo-light-theme.png"
+              alt="KKEVO STUDIO MEDIA"
+              class="block dark:hidden h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </router-link>
           <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
             KKEVO STUDIO MEDIA is an independent, African-centred global digital media institution. Delivering verified facts, geopolitical perspective, and in-depth structural analysis.
@@ -70,7 +75,7 @@
     </div>
 
     <!-- Bottom Legal Bar -->
-    <div class="border-t border-slate-200 dark:border-kkevo-navy-900 bg-slate-200/50 dark:bg-black/40 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="border-t border-slate-200 dark:border-white/[0.06] bg-slate-200/50 dark:bg-[#030509] py-6 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
         <p>&copy; {{ new Date().getFullYear() }} KKEVO STUDIO MEDIA. All Rights Reserved. Not government or corporate propaganda.</p>
         <div class="flex items-center gap-6">

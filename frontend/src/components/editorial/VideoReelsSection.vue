@@ -1,17 +1,17 @@
 <template>
-  <section class="mt-16 bg-black/60 border-y border-kkevo-navy-800 py-12">
+  <section class="mt-16 bg-slate-100/80 dark:bg-gradient-to-b dark:from-[#080C14] dark:to-[#04060A] border-y border-slate-200 dark:border-white/[0.08] py-12 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between mb-8 pb-3 border-b border-kkevo-navy-800">
+      <div class="flex items-end justify-between mb-8 pb-3 border-b border-slate-300 dark:border-white/[0.08]">
         <div>
-          <div class="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-kkevo-blue-glow uppercase">
+          <div class="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-kkevo-blue dark:text-kkevo-blue-glow uppercase">
             <span class="w-2 h-2 rounded-full bg-kkevo-blue"></span>
             KKEVO Visual & Broadcast Journalism
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-headline mt-1">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-headline mt-1">
             60 Seconds of Context & Documentaries
           </h2>
         </div>
-        <router-link to="/video" class="text-xs uppercase font-mono tracking-wider text-kkevo-blue-glow hover:text-white transition">
+        <router-link to="/video" class="text-xs uppercase font-mono tracking-wider text-kkevo-blue dark:text-kkevo-blue-glow hover:text-slate-900 dark:hover:text-white font-bold transition">
           Browse Video Archive &rarr;
         </router-link>
       </div>
@@ -21,7 +21,7 @@
         <div
           v-for="v in videos"
           :key="v.id"
-          class="bg-kkevo-navy-900 border border-kkevo-navy-800 rounded-lg overflow-hidden group cursor-pointer hover:border-kkevo-blue/50 transition"
+          class="bg-white dark:bg-gradient-to-b dark:from-[#0E1726]/90 dark:to-[#080D17] border border-slate-200 dark:border-white/[0.08] rounded-xl overflow-hidden group cursor-pointer hover:border-kkevo-blue/50 transition-all duration-300 shadow-sm hover:shadow-lg dark:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.6)] dark:hover:shadow-[0_12px_30px_-5px_rgba(0,102,255,0.2)] hover:-translate-y-1"
           @click="activeVideo = v"
         >
           <!-- Video Thumbnail with Play Button -->
@@ -29,9 +29,9 @@
             <img
               :src="v.thumbnail_url || 'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80'"
               :alt="v.title"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
             />
-            <div class="absolute inset-0 flex items-center justify-center">
+            <div class="absolute inset-0 flex items-center justify-center bg-black/20">
               <div class="w-12 h-12 rounded-full bg-kkevo-blue/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                 <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
@@ -46,13 +46,13 @@
 
           <!-- Video Title & Details -->
           <div class="p-4 space-y-2">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-kkevo-blue-glow font-bold">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-kkevo-blue dark:text-kkevo-blue-glow font-bold">
               {{ v.type_display || 'Short Reel' }}
             </span>
-            <h3 class="text-sm font-bold text-white leading-snug group-hover:text-kkevo-blue-glow transition line-clamp-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-snug group-hover:text-kkevo-blue dark:group-hover:text-kkevo-blue-glow transition line-clamp-2">
               {{ v.title }}
             </h3>
-            <p v-if="v.summary" class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+            <p v-if="v.summary" class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
               {{ v.summary }}
             </p>
           </div>
