@@ -96,13 +96,27 @@
       </header>
 
       <!-- Active Editorial Correction Banner -->
-      <div v-if="article.active_correction" class="p-4 bg-red-50 dark:bg-red-950/80 border-l-4 border-red-500 rounded-r-lg text-xs space-y-2">
-        <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold uppercase tracking-wider font-mono">
-          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-          Editorial Correction Notice &bull; {{ formatCorrectionDate(article.active_correction.corrected_at) }}
+      <div v-if="article.active_correction || article.status === 'CORRECTED'" class="p-4 sm:p-5 bg-rose-50/90 dark:bg-[#1A0A0E] border-y border-r border-rose-200 dark:border-red-900/50 border-l-4 border-l-red-600 dark:border-l-red-500 rounded-r-xl text-xs space-y-2 shadow-sm transition-colors">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 text-red-700 dark:text-red-400 font-bold uppercase tracking-wider font-mono text-xs">
+            <span class="w-2 h-2 rounded-full bg-red-600 dark:bg-red-500 animate-ping"></span>
+            Institutional Correction Notice
+          </div>
+          <span v-if="article.active_correction?.corrected_at" class="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+            Updated {{ formatCorrectionDate(article.active_correction.corrected_at) }}
+          </span>
         </div>
-        <p class="text-slate-900 dark:text-slate-200 font-bold">{{ article.active_correction.title }}</p>
-        <p class="text-slate-700 dark:text-slate-400 leading-relaxed">{{ article.active_correction.reason_for_correction }}</p>
+        <p class="text-sm font-bold text-slate-900 dark:text-white">
+          {{ article.active_correction?.title || 'This article has been updated to correct factual context in accordance with KKEVO verification standards.' }}
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+          {{ article.active_correction?.reason_for_correction || 'KKEVO STUDIO MEDIA maintains a publicly accountable transparency ledger. All edits affecting factual assertions are timestamped and preserved.' }}
+        </p>
+        <div class="pt-1">
+          <router-link to="/corrections" class="text-red-700 dark:text-red-400 hover:underline font-mono font-bold text-[11px] inline-flex items-center gap-1">
+            <span>Review Full Institutional Corrections Ledger</span> &rarr;
+          </router-link>
+        </div>
       </div>
 
       <!-- Hero Media -->
@@ -254,11 +268,13 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { api } from '../services/api';
 import { useAuthStore } from '../stores/authStore';
+import { useAlertStore } from '../stores/alertStore';
 import VerificationBadge from '../components/common/VerificationBadge.vue';
 import CommentSection from '../components/editorial/CommentSection.vue';
 
 const route = useRoute();
 const authStore = useAuthStore();
+const alertStore = useAlertStore();
 
 const article = ref(null);
 const loading = ref(true);
@@ -280,10 +296,10 @@ const renderedBody = computed(() => {
   if (!article.value?.body) return '';
   let html = article.value.body
     .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-slate-900 dark:text-white font-headline mt-8 mb-4">$1</h3>')
-    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-extrabold text-slate-900 dark:text-white font-headline mt-10 mb-4 pb-2 border-b border-slate-200 dark:border-kkevo-navy-800">$1</h2>')
+    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-extrabold text-slate-900 dark:text-white font-headline mt-10 mb-4 pb-2 border-b border-slate-200 dark:border-white/10">$1</h2>')
     .replace(/\*\*(.*?)\*\*/gim, '<strong class="text-slate-900 dark:text-white font-semibold">$1</strong>')
     .replace(/\n\n/g, '</p><p class="mb-5 leading-relaxed">')
-    .replace(/```([\s\S]*?)```/gim, '<pre class="bg-slate-900 text-kkevo-green p-4 rounded-lg font-mono text-xs border border-slate-800 my-4 overflow-x-auto"><code>$1</code></pre>');
+    .replace(/```([\s\S]*?)```/gim, '<pre class="bg-slate-900 dark:bg-[#060910] text-emerald-400 dark:text-kkevo-green p-4 rounded-xl font-mono text-xs border border-slate-800 dark:border-white/10 my-4 overflow-x-auto"><code>$1</code></pre>');
 
   return `<p class="editorial-dropcap mb-5 leading-relaxed">${html}</p>`;
 });
@@ -306,7 +322,10 @@ function shareStory() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(window.location.href);
     copied.value = true;
+    alertStore.info('Story Link Copied', 'Article link copied to clipboard.');
     setTimeout(() => { copied.value = false; }, 2000);
+  } else {
+    alertStore.info('Story URL', window.location.href);
   }
 }
 

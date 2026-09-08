@@ -2,16 +2,16 @@
   <div class="min-h-screen py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <!-- Category Header -->
-      <div class="border-b border-kkevo-navy-800 pb-6 space-y-2">
+      <div class="border-b border-slate-200 dark:border-white/[0.08] pb-6 space-y-2">
         <div class="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-kkevo-green uppercase">
-          <router-link to="/" class="hover:text-white">Home</router-link>
+          <router-link to="/" class="hover:text-slate-900 dark:hover:text-white transition-colors">Home</router-link>
           <span>&rsaquo;</span>
           <span>Section Desk</span>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white font-headline capitalize">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-headline capitalize">
           {{ categoryName }}
         </h1>
-        <p class="text-xs sm:text-sm text-slate-400 max-w-2xl leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
           Comprehensive, evidence-led reporting and strategic intelligence on {{ categoryName }}.
         </p>
       </div>
@@ -21,7 +21,7 @@
         <div class="w-10 h-10 border-4 border-kkevo-blue border-t-transparent rounded-full animate-spin mx-auto"></div>
       </div>
 
-      <div v-else-if="!articles.length" class="py-16 text-center text-slate-400 text-xs">
+      <div v-else-if="!articles.length" class="py-16 text-center text-slate-500 dark:text-slate-400 text-xs font-mono">
         No articles published under this section yet.
       </div>
 

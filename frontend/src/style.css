@@ -6,8 +6,18 @@
   html {
     scroll-behavior: smooth;
   }
+
+  html.dark {
+    color-scheme: dark;
+    background-color: #06090E;
+  }
+
+  html:not(.dark) {
+    color-scheme: light;
+    background-color: #F8FAFC;
+  }
   
-  /* Ultra-Premium Dark Theme (Default) */
+  /* Ultra-Premium Dark Theme */
   html.dark body {
     background-color: #06090E;
     color: #E2E8F0;

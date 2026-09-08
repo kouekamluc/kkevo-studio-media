@@ -1,15 +1,15 @@
 <template>
   <div class="min-h-screen py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div class="border-b border-red-500/30 pb-6 space-y-2">
-        <div class="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-red-400 uppercase">
+      <div class="border-b border-red-200 dark:border-red-500/30 pb-6 space-y-2">
+        <div class="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-red-600 dark:text-red-400 uppercase">
           <span class="w-2 h-2 rounded-full bg-red-500"></span>
           KKEVO Institutional Transparency Ledger
         </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white font-headline">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-headline">
           Public Corrections & Clarifications
         </h1>
-        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           KKEVO STUDIO MEDIA adheres to rigorous evidence standards. When an error of fact, number, or attribution occurs, we promptly issue a transparent correction detailing the error, its source, and the corrective action taken.
         </p>
       </div>
@@ -18,7 +18,7 @@
         <div class="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
       </div>
 
-      <div v-else-if="!corrections.length" class="py-16 text-center text-slate-400 text-xs">
+      <div v-else-if="!corrections.length" class="py-16 text-center text-slate-500 dark:text-slate-400 text-xs font-mono">
         No active correction notices in the archive.
       </div>
 
@@ -26,39 +26,39 @@
         <article
           v-for="c in corrections"
           :key="c.id"
-          class="bg-kkevo-navy-900 border border-red-900/40 rounded-lg p-6 space-y-4 shadow-xl"
+          class="bg-white dark:bg-[#0A0E18] border border-red-200 dark:border-red-900/40 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm dark:shadow-xl transition-colors"
         >
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-kkevo-navy-800 pb-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-white/[0.08] pb-3">
             <div>
-              <span class="text-[11px] font-mono text-red-400 font-bold uppercase tracking-wider block">
+              <span class="text-[11px] font-mono text-red-600 dark:text-red-400 font-bold uppercase tracking-wider block">
                 CORRECTION LOGGED &bull; {{ formatDate(c.corrected_at) }}
               </span>
               <router-link
                 v-if="c.article_slug"
                 :to="`/article/${c.article_slug}`"
-                class="text-base font-bold text-white hover:text-kkevo-blue-glow transition font-headline"
+                class="text-base font-bold text-slate-900 dark:text-white hover:text-kkevo-blue dark:hover:text-kkevo-blue-glow transition font-headline"
               >
                 Story: {{ c.article_title }} &rarr;
               </router-link>
             </div>
-            <span class="text-xs text-slate-400 font-mono">Reviewed by: {{ c.corrected_by_name || 'Senior Editor' }}</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Reviewed by: {{ c.corrected_by_name || 'Senior Editor' }}</span>
           </div>
 
-          <h3 class="text-sm font-bold text-slate-100">{{ c.title }}</h3>
+          <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">{{ c.title }}</h3>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-            <div class="p-3 bg-kkevo-navy-950 rounded border border-red-950 text-slate-300 space-y-1">
-              <span class="text-[11px] uppercase font-mono font-bold text-red-400 block">Original Statement:</span>
+            <div class="p-3.5 bg-red-50 dark:bg-red-950/40 rounded-xl border border-red-200 dark:border-red-900/40 text-slate-800 dark:text-slate-300 space-y-1">
+              <span class="text-[11px] uppercase font-mono font-bold text-red-600 dark:text-red-400 block">Original Statement:</span>
               <p>{{ c.original_claim }}</p>
             </div>
-            <div class="p-3 bg-kkevo-navy-950 rounded border border-emerald-950 text-slate-200 space-y-1">
-              <span class="text-[11px] uppercase font-mono font-bold text-kkevo-green block">Corrected Record:</span>
+            <div class="p-3.5 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-200 dark:border-emerald-900/40 text-slate-800 dark:text-slate-200 space-y-1">
+              <span class="text-[11px] uppercase font-mono font-bold text-emerald-700 dark:text-kkevo-green block">Corrected Record:</span>
               <p>{{ c.corrected_claim }}</p>
             </div>
           </div>
 
-          <div class="p-3 bg-black/40 rounded text-xs text-slate-400 leading-relaxed border border-kkevo-navy-800">
-            <strong class="text-slate-300 font-mono text-[11px] uppercase block mb-1">Reason & Source of Discrepancy:</strong>
+          <div class="p-3.5 bg-slate-50 dark:bg-[#06090E] rounded-xl text-xs text-slate-600 dark:text-slate-300 leading-relaxed border border-slate-200 dark:border-white/[0.08]">
+            <strong class="text-slate-800 dark:text-slate-200 font-mono text-[11px] uppercase block mb-1">Reason & Source of Discrepancy:</strong>
             {{ c.reason_for_correction }}
           </div>
         </article>

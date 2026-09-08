@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { api } from '../services/api';
+import { useAlertStore } from './alertStore';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -36,6 +37,8 @@ export const useAuthStore = defineStore('auth', {
         this.user = res.user;
         this.authModalOpen = false;
         this.fetchBookmarks();
+        const alertStore = useAlertStore();
+        alertStore.success('Newsroom Sign-In', `Welcome back, ${this.displayName}.`);
         return true;
       } finally {
         this.loading = false;
@@ -48,6 +51,8 @@ export const useAuthStore = defineStore('auth', {
       } finally {
         this.user = null;
         this.bookmarks = [];
+        const alertStore = useAlertStore();
+        alertStore.info('Session Ended', 'You have safely signed out.');
       }
     },
 
@@ -62,15 +67,24 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async toggleBookmark(articleId) {
+      const alertStore = useAlertStore();
       if (!this.user) {
+        alertStore.info('Reader Sign-In Required', 'Create a free account or sign in to save stories to your dossier.');
         this.authModalOpen = true;
         return;
       }
+      const wasBookmarked = this.isBookmarked(articleId);
       try {
         await api.addBookmark(articleId);
-        this.fetchBookmarks();
+        await this.fetchBookmarks();
+        if (wasBookmarked) {
+          alertStore.info('Dossier Updated', 'Story removed from your saved reading list.');
+        } else {
+          alertStore.success('Story Saved to Dossier', 'Article preserved in your verified reading library.');
+        }
       } catch (err) {
         console.error('Bookmark error', err);
+        alertStore.error('Bookmark Notice', 'Could not update your reading dossier.');
       }
     },
 

@@ -44,34 +44,34 @@ const statusDisplay = computed(() => {
 const badgeStyles = computed(() => {
   switch (props.status) {
     case 'VERIFIED_FACT':
-      return 'bg-emerald-950/80 text-kkevo-green border border-kkevo-green/30';
+      return 'bg-emerald-50 text-emerald-800 border border-emerald-300 dark:bg-emerald-950/80 dark:text-kkevo-green dark:border-kkevo-green/30';
     case 'OFFICIAL_CLAIM':
-      return 'bg-blue-950/80 text-kkevo-blue-glow border border-kkevo-blue/30';
+      return 'bg-blue-50 text-blue-800 border border-blue-300 dark:bg-blue-950/80 dark:text-kkevo-blue-glow dark:border-kkevo-blue/30';
     case 'ALLEGATION':
-      return 'bg-amber-950/80 text-amber-400 border border-amber-500/30';
+      return 'bg-amber-50 text-amber-800 border border-amber-300 dark:bg-amber-950/80 dark:text-amber-400 dark:border-amber-500/30';
     case 'ANALYSIS':
-      return 'bg-purple-950/80 text-purple-300 border border-purple-500/30';
+      return 'bg-purple-50 text-purple-800 border border-purple-300 dark:bg-purple-950/80 dark:text-purple-300 dark:border-purple-500/30';
     case 'CORRECTION':
-      return 'bg-red-950/90 text-red-400 border border-red-500/40';
+      return 'bg-red-50 text-red-800 border border-red-300 dark:bg-red-950/90 dark:text-red-400 dark:border-red-500/40';
     default:
-      return 'bg-kkevo-navy-800 text-kkevo-silver-dim border border-kkevo-navy-700';
+      return 'bg-slate-100 text-slate-700 border border-slate-300 dark:bg-[#111A29] dark:text-slate-300 dark:border-white/10';
   }
 });
 
 const dotStyles = computed(() => {
   switch (props.status) {
     case 'VERIFIED_FACT':
-      return 'bg-kkevo-green animate-pulse';
+      return 'bg-emerald-600 dark:bg-kkevo-green animate-pulse';
     case 'OFFICIAL_CLAIM':
-      return 'bg-kkevo-blue-glow';
+      return 'bg-blue-600 dark:bg-kkevo-blue-glow';
     case 'ALLEGATION':
-      return 'bg-amber-400';
+      return 'bg-amber-600 dark:bg-amber-400';
     case 'ANALYSIS':
-      return 'bg-purple-400';
+      return 'bg-purple-600 dark:bg-purple-400';
     case 'CORRECTION':
-      return 'bg-red-400';
+      return 'bg-red-600 dark:bg-red-400';
     default:
-      return 'bg-slate-400';
+      return 'bg-slate-500 dark:bg-slate-400';
   }
 });
 </script>

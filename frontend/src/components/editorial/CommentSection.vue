@@ -1,6 +1,6 @@
 <template>
-  <section class="mt-12 bg-white dark:bg-kkevo-navy-900 border border-slate-200 dark:border-kkevo-navy-800 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm dark:shadow-none transition-colors">
-    <div class="flex items-center justify-between border-b border-slate-200 dark:border-kkevo-navy-800 pb-3">
+  <section class="mt-12 bg-white dark:bg-gradient-to-b dark:from-[#0E1726]/90 dark:to-[#080D17] border border-slate-200 dark:border-white/[0.08] rounded-xl p-6 sm:p-8 space-y-6 shadow-sm dark:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.6)] transition-colors">
+    <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3">
       <div>
         <span class="text-xs font-mono font-bold tracking-widest text-kkevo-green uppercase block">
           Reader Perspectives & Scrutiny
@@ -14,38 +14,38 @@
 
     <!-- Submit Comment Form -->
     <div v-if="authStore.isAuthenticated" class="space-y-3">
-      <label class="block text-xs uppercase font-mono text-slate-600 dark:text-slate-400">
+      <label class="block text-xs uppercase font-mono text-slate-700 dark:text-slate-300 font-semibold">
         Leave an evidence-led perspective as <strong class="text-slate-900 dark:text-white">{{ authStore.displayName }}</strong>:
       </label>
       <textarea
         v-model="commentText"
         rows="3"
         placeholder="Add empirical context, historical clarification, or constructive scrutiny..."
-        class="w-full bg-slate-50 dark:bg-kkevo-navy-950 border border-slate-200 dark:border-kkevo-navy-700 rounded-lg p-3 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-kkevo-blue text-sm leading-relaxed"
+        class="w-full bg-slate-50 dark:bg-[#060910] border border-slate-200 dark:border-white/10 rounded-lg p-3 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-kkevo-blue text-sm leading-relaxed"
       ></textarea>
 
-      <div class="flex items-center justify-between pt-1">
-        <span class="text-[11px] text-slate-500">Comments are audited against KKEVO community guidelines.</span>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-1">
+        <span class="text-[11px] text-slate-500 dark:text-slate-400">Comments are audited against KKEVO community guidelines.</span>
         <button
           @click="submitComment"
           :disabled="submitting || !commentText.trim()"
-          class="px-4 py-2 bg-kkevo-blue text-white rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-kkevo-blue-dark transition disabled:opacity-50"
+          class="px-4 py-2 bg-kkevo-blue text-white rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-kkevo-blue-dark transition disabled:opacity-50 shadow-sm"
         >
           <span v-if="submitting">Submitting...</span>
           <span v-else>Post Comment &rarr;</span>
         </button>
       </div>
 
-      <div v-if="feedbackMsg" class="p-3 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-kkevo-green/40 rounded-lg text-xs text-emerald-800 dark:text-kkevo-green">
+      <div v-if="feedbackMsg" class="p-3 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-kkevo-green/40 rounded-lg text-xs text-emerald-800 dark:text-kkevo-green font-medium">
         {{ feedbackMsg }}
       </div>
     </div>
 
-    <div v-else class="p-4 bg-slate-50 dark:bg-kkevo-navy-950 border border-slate-200 dark:border-kkevo-navy-800 rounded-lg text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between">
+    <div v-else class="p-4 bg-slate-50 dark:bg-[#060910] border border-slate-200 dark:border-white/10 rounded-lg text-xs text-slate-600 dark:text-slate-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
       <span>Join the discussion and contribute verified perspectives.</span>
       <button
         @click="authStore.toggleAuthModal(true)"
-        class="px-3 py-1.5 bg-kkevo-blue text-white rounded font-semibold hover:bg-kkevo-blue-dark transition"
+        class="px-3.5 py-1.5 bg-kkevo-blue text-white rounded-lg font-semibold hover:bg-kkevo-blue-dark transition shadow-sm"
       >
         Sign In to Comment
       </button>
@@ -53,23 +53,23 @@
 
     <!-- Comments List -->
     <div class="space-y-4 pt-2">
-      <div v-if="!comments.length" class="text-center py-6 text-xs text-slate-500">
+      <div v-if="!comments.length" class="text-center py-6 text-xs text-slate-500 dark:text-slate-400 font-mono">
         No comments approved on this story yet. Be the first to provide verified perspective.
       </div>
 
       <div
         v-for="c in comments"
         :key="c.id"
-        class="p-4 bg-slate-50 dark:bg-kkevo-navy-950 rounded-lg border border-slate-200 dark:border-kkevo-navy-800 space-y-2"
+        class="p-4 bg-slate-50 dark:bg-[#060910] rounded-xl border border-slate-200 dark:border-white/10 space-y-2"
       >
         <div class="flex items-center justify-between text-xs">
           <div class="flex items-center gap-2">
             <span class="font-bold text-slate-900 dark:text-slate-100">{{ c.user_name || 'Registered Reader' }}</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-kkevo-green font-mono">
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-kkevo-green font-mono border border-emerald-200 dark:border-emerald-500/30 font-bold">
               Verified Reader
             </span>
           </div>
-          <span class="text-slate-500 font-mono text-[11px]">{{ formatDate(c.created_at) }}</span>
+          <span class="text-slate-500 dark:text-slate-400 font-mono text-[11px]">{{ formatDate(c.created_at) }}</span>
         </div>
         <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{{ c.content }}</p>
       </div>

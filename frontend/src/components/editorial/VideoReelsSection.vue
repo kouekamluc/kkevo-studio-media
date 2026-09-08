@@ -61,17 +61,17 @@
     </div>
 
     <!-- Interactive Video Lightbox Modal -->
-    <div v-if="activeVideo" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
-      <div class="bg-kkevo-navy-950 border border-kkevo-navy-700 rounded-lg max-w-4xl w-full p-6 shadow-2xl relative space-y-4">
-        <button @click="activeVideo = null" class="absolute top-4 right-4 text-slate-400 hover:text-white z-10">
+    <div v-if="activeVideo" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div class="bg-white dark:bg-[#0B101B] border border-slate-200 dark:border-white/10 rounded-2xl max-w-4xl w-full p-6 shadow-2xl relative space-y-4">
+        <button @click="activeVideo = null" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 dark:hover:text-white z-10 transition">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <h3 class="text-lg font-bold text-white font-headline pr-8">{{ activeVideo.title }}</h3>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-headline pr-8">{{ activeVideo.title }}</h3>
 
-        <div class="aspect-video bg-black rounded overflow-hidden">
+        <div class="aspect-video bg-black rounded-xl overflow-hidden shadow-inner">
           <video
             controls
             autoplay
@@ -82,7 +82,7 @@
           </video>
         </div>
 
-        <div v-if="activeVideo.transcript" class="p-3 bg-kkevo-navy-900 rounded border border-kkevo-navy-800 text-xs text-slate-300 leading-relaxed max-h-32 overflow-y-auto">
+        <div v-if="activeVideo.transcript" class="p-4 bg-slate-50 dark:bg-[#060910] rounded-xl border border-slate-200 dark:border-white/10 text-xs text-slate-700 dark:text-slate-300 leading-relaxed max-h-32 overflow-y-auto">
           <span class="font-bold text-kkevo-green block mb-1 font-mono uppercase text-[11px]">Transcript:</span>
           {{ activeVideo.transcript }}
         </div>
