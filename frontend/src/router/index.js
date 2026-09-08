@@ -10,6 +10,10 @@ import SearchResultsView from '../views/SearchResultsView.vue';
 import EditorialDashboardView from '../views/EditorialDashboardView.vue';
 import LegalView from '../views/LegalView.vue';
 
+import TopicHubView from '../views/TopicHubView.vue';
+import LiveBlogView from '../views/LiveBlogView.vue';
+import ReaderProfileView from '../views/ReaderProfileView.vue';
+
 const routes = [
   {
     path: '/',
@@ -32,6 +36,11 @@ const routes = [
     component: CountryHubView,
   },
   {
+    path: '/topic/:slug',
+    name: 'topic-hub',
+    component: TopicHubView,
+  },
+  {
     path: '/analysis',
     name: 'analysis',
     component: AnalysisHubView,
@@ -42,9 +51,19 @@ const routes = [
     component: VideoHubView,
   },
   {
+    path: '/live/:slug?',
+    name: 'live-blog',
+    component: LiveBlogView,
+  },
+  {
     path: '/corrections',
     name: 'corrections',
     component: CorrectionsArchiveView,
+  },
+  {
+    path: '/profile',
+    name: 'reader-profile',
+    component: ReaderProfileView,
   },
   {
     path: '/search',
