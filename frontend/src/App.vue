@@ -33,6 +33,7 @@
 import { onMounted } from 'vue';
 import { useNewsStore } from './stores/newsStore';
 import { useAuthStore } from './stores/authStore';
+import { useThemeStore } from './stores/themeStore';
 import AppHeader from './components/common/AppHeader.vue';
 import AppFooter from './components/common/AppFooter.vue';
 import SearchModal from './components/common/SearchModal.vue';
@@ -41,8 +42,10 @@ import AuthModal from './components/common/AuthModal.vue';
 
 const newsStore = useNewsStore();
 const authStore = useAuthStore();
+const themeStore = useThemeStore();
 
 onMounted(() => {
+  themeStore.initTheme();
   authStore.checkAuth();
 });
 </script>
